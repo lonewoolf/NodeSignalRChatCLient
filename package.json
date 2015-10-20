@@ -1,0 +1,31 @@
+{
+  "name": "SignalRChatClient",
+  "version": "1.0",
+  "description": "This is a sample chat Client, node and SignalR",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": {
+    "name": "Abhi Chakravarty",
+    "email": "abhi6136@gmail.com"
+  },
+  "dependencies": {
+    "ejs": "2.3.4",
+    "express": "4.13.3",
+    "signalrjs":"0.2.2"
+  },
+  "engines": {
+    "node": "4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lonewoolf/NodeSignalRChatCLient"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
