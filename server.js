@@ -15,5 +15,15 @@ signalR.hub('chatHub',{
  
 var server = express();
 server.use(express.static(__dirname));
+server.set('views',__dirname + '/pages');
+server.set('view engine', 'ejs');
+server.engine('html', require('ejs').renderFile);
+
 server.use(signalR.createListener())
-server.listen(3000);
+server.set('port', (process.env.PORT || 3000));
+server.get('/', function(request, response) {
+  response.render('client.html');
+});
+server.listen(server.get('port'), function() {
+  console.log('Node app is running on port', server.get('port'));
+});
