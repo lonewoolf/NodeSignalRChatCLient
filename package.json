@@ -1,6 +1,6 @@
 {
   "name": "SignalRChatClient",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "This is a sample chat Client, node and SignalR",
   "main": "server.js",
   "scripts": {
