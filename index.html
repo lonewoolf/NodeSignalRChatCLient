@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Schrö·ding·er's Chat</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		 <script src="js/jquery-1.9.1.js" type="text/javascript"></script> 
+	    <script src="js/jquery.signalR.js" type="text/javascript"></script> 
+	    <script src="signalr/hubs"></script> 
+    <script type="text/javascript">
+        $(function () {
+            //Create hub connection 
+            var connection = $.connection.hub;
+            var chatHub = $.connection.chatHub;
+ 
+            //Handle a broadcast 
+            chatHub.client.broadcast = function (broadcastMessage) {
+               // alert('herer');
+               $("ol").append("<li>"+broadcastMessage+"</li>");
+                //$('#labelText').html(broadcastMessage);
+            };
+ 
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+
+
+                    
+                    var messageTObeBroadCasted = $('#inputMsg').val();
+
+                    var userName = $('#userName').val();
+
+                   // alert(messageTObeBroadCasted);
+                   if(userName!="")
+                   {
+                    chatHub.server.send(userName+" says: "+messageTObeBroadCasted);
+                   }
+                   else
+                   {
+                    alert('Please enter your Name')
+                   }
+
+
+                    //Call the hub server send 
+                    
+                });
+            });
+        });
+    </script> 
+
+    <style type="text/css">
+
+.verticalLine {
+    border-left: thick solid #ff0000;
+}
+
+ .inlineTable {
+            display: inline-block;
+        }
+
+
+
+.bigbox {
+  border: 0px solid green ;
+  width:100%; 
+  height:300px;
+  float:left;
+}
+
+.boxed1 {
+  border: 0px solid red ;
+ /* overflow: auto; */
+  width:45%; 
+  height:300px;
+  float:left;
+  margin-right:5px;
+}
+.boxed2 {
+  border: 0px solid red ;
+  overflow: auto; 
+  width:45%; 
+  height:300px;
+  float:right;
+}
+
+
+
+    </style>
+
+   
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1>Schrö·ding·er's C{h}at</h1>
+				<p><a> a chatroom application powered by NodeJS and SignalR</a>.</p>
+
+			</header>
+
+		<!-- Signup Form -->
+<div  class="bigbox">
+
+
+  <div class="boxed1">
+          <input type="text" name="userName" id="userName" placeholder="Your Name" /> <br>
+              <textarea name="inputMsg"  id="inputMsg" placeholder="Your Message"> </textarea>
+              <br>
+              <input type="button" id="sendmessage" value="Send" />
+
+  </div>
+
+  <div  class="boxed2" >
+      
+      <ol>
+  
+         </ol>
+    </div>
+     
+
+</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://twitter.com/ChakrVyuh" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.linkedin.com/in/abhishek-chakravarty-623a9b13" class="icon fa-linkedin"><span class="label"> linked in</span></a></li>
+					<li><a href="https://github.com/lonewoolf" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					
+				</ul>
+				<ul class="copyright">
+					<li>&copy; loneWoolf 2016</li><li>powered by: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
